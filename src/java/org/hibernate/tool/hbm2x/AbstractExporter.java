@@ -144,6 +144,9 @@ public abstract class AbstractExporter implements Exporter {
 	 * Setup the context variables used by the exporter. Subclasses should call super.setupContext() to ensure all needed variables are in the context. 
 	 **/
 	protected void setupContext() {
+		if(!getProperties().containsKey("field_prefix")) {
+			getProperties().put("field_prefix", "");
+		}
 		getTemplateHelper().setupContext();		
 		getTemplateHelper().putInContext("exporter", this);
 		getTemplateHelper().putInContext("c2h", getCfg2HbmTool());

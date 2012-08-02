@@ -1,4 +1,6 @@
-<#if pojo.needsEqualsHashCode() && !clazz.superclass?exists>   public boolean equals(Object other) {
+<#if pojo.needsEqualsHashCode() && !clazz.superclass?exists>
+	<#if jdk5>@Override</#if>
+	public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;
 		 if ( !(other instanceof ${pojo.getDeclarationName()}) ) return false;
@@ -7,6 +9,7 @@
 		 return ${pojo.generateEquals("this", "castOther", jdk5)};
    }
    
+   <#if jdk5>@Override</#if>
    public int hashCode() {
          int result = 17;
          
