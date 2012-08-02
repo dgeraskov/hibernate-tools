@@ -4,7 +4,7 @@
 <#assign indexValue = value.getIndex()>
 <#assign elementTag = c2h.getCollectionElementTag(property)>
 
-<array name="${property.name}"
+<array name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
 	<#if value.elementClassName?exists> element-class="${value.elementClassName}"</#if>
 	<#include "collection-tableattr.hbm.ftl">
 	<#if property.cascade != "none">

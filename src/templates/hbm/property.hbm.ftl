@@ -1,5 +1,5 @@
     <property
-        name="${property.name}"
+        name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
 <#if !property.value.typeParameters?exists>
 	    type="${property.value.typeName}"
 </#if>        

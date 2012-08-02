@@ -462,4 +462,9 @@ public class Cfg2HbmTool {
 	public Iterator getProperties(PersistentClass pc) {
 		return new SkipBackRefPropertyIterator(pc.getUnjoinedPropertyIterator());
 	}
+	
+	public boolean isFieldAccess(Property p){
+		String accessor = p.getPropertyAccessorName();
+		return "field".equals(accessor);
+	}
 }

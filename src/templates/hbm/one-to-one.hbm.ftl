@@ -1,5 +1,5 @@
     <one-to-one
-	    name="${property.name}"
+	    name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
 	    class="${c2j.getJavaTypeName(property, false)}"
 <#if property.value.referencedPropertyName?exists> 
         property-ref="${property.value.referencedPropertyName}"

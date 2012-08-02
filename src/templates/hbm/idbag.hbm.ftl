@@ -3,7 +3,7 @@
 <#assign elementValue = value.getElement()>
 <#assign elementTag = c2h.getCollectionElementTag(property)>
 
-	<idbag name="${property.name}" 
+	<idbag name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}" 
 	<#include "collection-tableattr.hbm.ftl">
 	lazy="${c2h.getCollectionLazy(value)}"
 	<#if property.cascade != "none">

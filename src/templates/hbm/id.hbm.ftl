@@ -18,7 +18,7 @@
   </composite-id>   
 <#elseif !c2j.isComponent(property)>
 	<id 
-        name="${property.name}"
+        name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
         type="${property.value.typeName}"
  <#if c2h.isUnsavedValue(property)>
         unsaved-value="${c2h.getUnsavedValue(property)}"
@@ -46,7 +46,7 @@
     </id>
 <#else>
     <composite-id
-		name="${property.name}"
+		name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
         class="${property.value.getComponentClassName()}"
 <#if c2h.isUnsavedValue(property)>
         unsaved-value="${c2h.getUnsavedValue(property)}"

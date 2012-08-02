@@ -1,5 +1,5 @@
 <#assign value = property.value>
-	<any name="${property.name}" 
+	<any name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}" 
 		id-type="${value.getIdentifierType()}" 
 		meta-type="${value.getMetaType()}"
 		<#if property.cascade != "none">

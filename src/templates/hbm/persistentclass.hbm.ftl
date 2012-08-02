@@ -79,7 +79,7 @@
         	class="${clazz.identifier.getComponentClassName()}"
         	<#if clazz.identifierMapper?exists>mapped="true"</#if>>
         	<#foreach property in clazz.identifier.propertyIterator>
-        		<key-property name="${property.name}">
+        		<key-property name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}">
         		<#foreach column in property.value.columnIterator>
         		<#include "column.hbm.ftl">
  			</#foreach>

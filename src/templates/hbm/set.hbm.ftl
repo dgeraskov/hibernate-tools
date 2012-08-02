@@ -3,7 +3,7 @@
 <#assign elementValue = value.getElement()>
 <#assign elementTag = c2h.getCollectionElementTag(property)>
 
-	<set name="${property.name}"
+	<set name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
 	<#include "collection-tableattr.hbm.ftl"> 
 	inverse="${value.inverse?string}"
 	lazy="${c2h.getCollectionLazy(value)}"	 		

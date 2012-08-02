@@ -1,6 +1,6 @@
 
 <dynamic-component
-    name="${property.name}"
+    name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
     <#if !property.basicPropertyAccessor>
         access="${property.propertyAccessorName}"
      </#if>

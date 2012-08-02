@@ -2,7 +2,7 @@
 <#assign table = value.collectionTable.name>
 <#assign dependentValue = value.getKey()>
 
-<primitive-array name="${property.name}" table="${table}"
+<primitive-array name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}" table="${table}"
 <#if !property.basicPropertyAccessor>
     access="${property.propertyAccessorName}"
 </#if>>

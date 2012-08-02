@@ -1,6 +1,6 @@
 
 <component
-    name="${property.name}"
+    name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}"
     class="${property.value.componentClassName}"
     <#if !property.basicPropertyAccessor>
         access="${property.propertyAccessorName}"

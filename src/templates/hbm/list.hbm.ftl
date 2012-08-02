@@ -4,7 +4,7 @@
 <#assign indexValue = value.getIndex()>
 <#assign elementTag = c2h.getCollectionElementTag(property)>
 
-	<list name="${property.name}" inverse="${value.inverse?string}" 
+	<list name="<#if c2h.isFieldAccess(property)>${field_prefix}</#if>${property.name}" inverse="${value.inverse?string}" 
 	<#include "collection-tableattr.hbm.ftl"> 
 	lazy="${c2h.getCollectionLazy(value)}"
 	<#if property.cascade != "none">
