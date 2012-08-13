@@ -27,13 +27,13 @@ import org.hibernate.tool.test.TestHelper;
 public class CommentEscapeCharactersTest extends TestCase {
 	
 	
-	private static final String TABLE_COMMENT = "This table coumment < should be escaped > !";
-	private static final String ESCAPED_TABLE_COMMENT = "This table coumment &lt; should be escaped &gt; !";
+	private static final String TABLE_COMMENT = "<This> table comment should be escaped!";
+	private static final String ESCAPED_TABLE_COMMENT = "&lt;This&gt; table comment should be escaped!";
 	
-	private static final String COLUMN_COMMENT = "This column coumment < should be escaped > !";
-	private static final String ESCAPED_COLUMN_COMMENT = "This column coumment &lt; should be escaped &gt; !";
+	private static final String COLUMN_COMMENT = "<This> column comment should be escaped!";
+	private static final String ESCAPED_COLUMN_COMMENT = "&lt;This&gt; column comment should be escaped!";
 	
-	private static final String ID_COMMENT = "This id coumment &lt;already escaped&gt;!";
+	private static final String ID_COMMENT = "This id comment &lt;already escaped&gt;!";
 	
 	private File outputDir;
 	
@@ -56,17 +56,19 @@ public class CommentEscapeCharactersTest extends TestCase {
 	public void testHbmExporterComment(){
 		HibernateMappingGlobalSettings hmgs = new HibernateMappingGlobalSettings();
 		HibernateMappingExporter hbmexporter = new HibernateMappingExporter(getCfg(), getOutputDir() );
+
 		hbmexporter.setGlobalSettings(hmgs);
 
 		hbmexporter.start();
 		
 		File file = new File(getOutputDir(), "test/CommentedTable.hbm.xml");
 		assertTrue(file.exists());
-		assertNull(TestHelper.findFirstString(TABLE_COMMENT , file ));
-		assertNotNull(TestHelper.findFirstString(ESCAPED_TABLE_COMMENT, file ));
-		assertNull(TestHelper.findFirstString(COLUMN_COMMENT, file ));
-		assertNotNull(TestHelper.findFirstString(ESCAPED_COLUMN_COMMENT, file ));
+		assertNull("Table comment was not escaped", TestHelper.findFirstString(TABLE_COMMENT , file ));
+		assertNotNull("Table comment was escaped incorrectly",TestHelper.findFirstString(ESCAPED_TABLE_COMMENT, file ));
+		assertNull("Column comment was not escaped",TestHelper.findFirstString(COLUMN_COMMENT, file ));
+		assertNotNull("Column comment was escaped incorrectly",TestHelper.findFirstString(ESCAPED_COLUMN_COMMENT, file ));
 	}
+
 	
 	protected Configuration getCfg(){
 		Configuration cfg = new Configuration();
@@ -122,7 +124,8 @@ public class CommentEscapeCharactersTest extends TestCase {
 	}
 
 	public static Test suite() {
-		return new CommentEscapeCharactersTest();
+		return new TestSuite(CommentEscapeCharactersTest.class);
 	}
+
 
 }
