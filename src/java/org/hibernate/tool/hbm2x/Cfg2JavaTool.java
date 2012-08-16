@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import org.hibernate.cfg.reveng.ReverseEngineeringStrategyUtil;
 import org.hibernate.internal.util.StringHelper;
@@ -45,7 +44,9 @@ import org.slf4j.LoggerFactory;
  */
 public class Cfg2JavaTool {
 
-	private static final Logger log = LoggerFactory.getLogger( Cfg2JavaTool.class );	
+	private static final Logger log = LoggerFactory.getLogger( Cfg2JavaTool.class );
+	
+	private static final BasicTypeRegistry basicTypeRegistry = new BasicTypeRegistry();
 			
 	public Cfg2JavaTool() {
 
@@ -197,7 +198,7 @@ public class Cfg2JavaTool {
 
 	static public boolean isNonPrimitiveTypeName(String typeName) {
 		return (!PRIMITIVES.containsKey( typeName ))
-				&& new BasicTypeRegistry().getRegisteredType(typeName) != null;
+				&& basicTypeRegistry.getRegisteredType(typeName) != null;
 	}
 
 	private String getRawTypeName(Property p, boolean useGenerics, boolean preferRawTypeNames, ImportContext importContext) {
